@@ -1,30 +1,41 @@
 # RidoyNet Firmware
 
-A fresh firmware project for **TP-Link TL-WR845N (UN) V4.0**. This repository is the new project; no previous custom firmware source or configuration is being carried over.
+A clean firmware project for **TP-Link TL-WR845N (UN) V4.0**. This repository is independent; no source tree or board configuration is copied from the previous firmware repository.
 
-## Verified device information already supplied
+## Device data supplied earlier
 
-| Item | Value |
+| Item | Reported value |
 |---|---|
 | Model | TP-Link TL-WR845N (UN) V4.0 |
-| Board ID / Product ID | `TL_WR845N-V4` |
+| Board / product ID | `TL_WR845N-V4` |
 | SoC | MediaTek MT7628 |
 | CPU architecture | MIPS 24KEc |
-| RAM reported | 28.96 MB |
+| RAM | 28.96 MB |
 | Hardware ID | `0x08450004` |
-| Firmware partition | `0x3C0000` (reported) |
-| Current firmware reported | `3.4.3.9L-102_a3f62be` |
+| Firmware partition / available region | `0x3C0000` |
+| Stock firmware version | `3.4.3.9L-102_a3f62be` |
 
-The reported partition size and prior diagnostic values are retained as reference data; they must be checked against the exact image layout before any installation.
+These are previously supplied diagnostic values. The live partition map, flash capacity, board identifiers, and bootloader recovery method must be checked before any image can be considered safe.
 
-## Project rules
+## Current status: compatibility blocked
 
-- Start a clean firmware implementation and build pipeline in this repository.
-- Do not copy the previous repository's source tree or old firmware configuration into this project.
-- Identify and verify the supported upstream target, board definition, flash layout, image format, and recovery procedure before producing a flashable image.
-- Keep administrative SSH access restricted to the LAN; do not expose it on the WAN.
-- Never flash an image until its target compatibility, image size, checksum, and recovery path have been validated.
+The relevant OpenWrt platform family is `ramips/mt76x8`, but the upstream device-definition file checked during project setup did not show a TL-WR845N entry matching both the reported model and hardware ID. Similar MT7628 routers are not interchangeable.
 
-## Status
+The repository currently contains:
+- Hardware notes and safety requirements
+- A GitHub Actions compatibility-gate workflow
+- A script that checks whether one upstream device-definition block contains both the model and hardware ID
 
-Documentation initialized. No source tree, build workflow, or flashable firmware image has been added or built in this repository yet.
+The workflow is **not a firmware build**. It intentionally fails closed if the exact device definition is absent. No factory, sysupgrade, or recovery image is generated or published.
+
+## Next engineering requirements
+
+1. Confirm the live `/proc/mtd` map, flash chip capacity, board name, and device-tree compatible strings.
+2. Find or develop a device port for this exact hardware revision.
+3. Verify image header fields, maximum firmware size, partition layout, and bootloader recovery.
+4. Add a reproducible OpenWrt source/build pipeline only after the exact target is established.
+5. Inspect the generated image and publish checksums and tested recovery instructions before any flash attempt.
+
+## Safety
+
+Never flash firmware for a neighboring model or hardware revision. Do not expose administrative SSH on the WAN; keep it LAN-only.
