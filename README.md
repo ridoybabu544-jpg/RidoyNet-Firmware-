@@ -28,6 +28,8 @@ The repository currently contains:
 - A GitHub Actions compatibility-gate workflow
 - A script that checks whether one upstream device-definition block contains both the model and hardware ID
 - A read-only router diagnostics script at `scripts/collect-router-info.sh`
+- A firmware feasibility review at `docs/firmware-feasibility.md`
+- A preliminary image-size/checksum audit at `scripts/audit-image-size.sh` (not a compatibility test)
 
 The workflow is **not a firmware build**. It intentionally fails closed if the exact device definition is absent. No factory, sysupgrade, or recovery image is generated or published.
 
