@@ -1,21 +1,30 @@
 # RidoyNet Firmware
 
-Fresh firmware project for the TP-Link TL-WR845N v4.
+A fresh firmware project for **TP-Link TL-WR845N (UN) V4.0**. This repository is the new project; no previous custom firmware source or configuration is being carried over.
 
-> **Status: hardware verification required — no flashable firmware has been built yet.**
+## Verified device information already supplied
 
-## Project principles
+| Item | Value |
+|---|---|
+| Model | TP-Link TL-WR845N (UN) V4.0 |
+| Board ID / Product ID | `TL_WR845N-V4` |
+| SoC | MediaTek MT7628 |
+| CPU architecture | MIPS 24KEc |
+| RAM reported | 28.96 MB |
+| Hardware ID | `0x08450004` |
+| Firmware partition | `0x3C0000` (reported) |
+| Current firmware reported | `3.4.3.9L-102_a3f62be` |
 
-- Start from a clean, reproducible OpenWrt-based build configuration.
-- Preserve the exact device target, image format, partition layout, and device-specific installation/recovery requirements.
-- Do not reuse files or configuration from earlier firmware projects.
-- Keep SSH access LAN-only by default; never expose administrative SSH on WAN.
-- Do not publish or flash an image until its device compatibility and build artifacts have been verified.
+The reported partition size and prior diagnostic values are retained as reference data; they must be checked against the exact image layout before any installation.
 
-## Hardware gate
+## Project rules
 
-Before selecting a build target or producing an image, verify the exact hardware revision and board identifiers from the router label and a read-only system report. The TL-WR845N has multiple hardware revisions; images are not interchangeable.
+- Start a clean firmware implementation and build pipeline in this repository.
+- Do not copy the previous repository's source tree or old firmware configuration into this project.
+- Identify and verify the supported upstream target, board definition, flash layout, image format, and recovery procedure before producing a flashable image.
+- Keep administrative SSH access restricted to the LAN; do not expose it on the WAN.
+- Never flash an image until its target compatibility, image size, checksum, and recovery path have been validated.
 
-## Build status
+## Status
 
-This repository currently contains project documentation only. A successful build, image checksum, and installation/recovery instructions must be added after hardware verification.
+Documentation initialized. No source tree, build workflow, or flashable firmware image has been added or built in this repository yet.
