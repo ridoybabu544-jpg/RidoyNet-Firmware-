@@ -17,6 +17,8 @@ This page records values already supplied for this project. They are reference d
 
 The relevant upstream OpenWrt platform family is `ramips/mt76x8`. The current upstream device-definition file checked during project setup did not provide a confirmed TL-WR845N V4 entry matching both the model and reported hardware ID.
 
+A separate community repository does select a `tplink_tl-wr845n-v4` profile, but it builds from a different source tree and has a documented concern about an 8 MB artifact exceeding the roughly 4 MB available flash region. This is a lead for further engineering review, not a verified safe image. See [community reference review](community-reference-review.md).
+
 Therefore this project is currently **compatibility blocked**. No factory image, sysupgrade image, recovery image, or flash command is authorized by this repository yet.
 
 ## Required before a firmware build
