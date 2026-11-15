@@ -21,10 +21,13 @@ These are previously supplied diagnostic values. The live partition map, flash c
 
 The relevant OpenWrt platform family is `ramips/mt76x8`, but the upstream device-definition file checked during project setup did not show a TL-WR845N entry matching both the reported model and hardware ID. Similar MT7628 routers are not interchangeable.
 
+A separate community repository was found that selects this model profile, but it uses a different source tree and has a documented 4 MB / 8 MB image-size concern. It is recorded for reference only; no files or binaries were copied. See [community reference review](docs/community-reference-review.md).
+
 The repository currently contains:
 - Hardware notes and safety requirements
 - A GitHub Actions compatibility-gate workflow
 - A script that checks whether one upstream device-definition block contains both the model and hardware ID
+- A read-only router diagnostics script at `scripts/collect-router-info.sh`
 
 The workflow is **not a firmware build**. It intentionally fails closed if the exact device definition is absent. No factory, sysupgrade, or recovery image is generated or published.
 
