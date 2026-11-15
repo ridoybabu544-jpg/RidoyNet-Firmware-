@@ -44,3 +44,8 @@ The workflow is **not a firmware build**. It intentionally fails closed if the e
 ## Safety
 
 Never flash firmware for a neighboring model or hardware revision. Do not expose administrative SSH on the WAN; keep it LAN-only.
+
+
+## Latest automated check
+
+The exact-device compatibility gate was executed on 2026-11-15 and **failed closed as intended**: upstream did not contain one device block matching both `TL-WR845N` and `0x08450004`. No build was attempted and no image was produced. See [the recorded result](docs/build-gate-result-2026-11-15.md) and [GitHub Actions run #12](https://github.com/ridoybabu544-jpg/RidoyNet-Firmware-/actions/runs/43723999536).
