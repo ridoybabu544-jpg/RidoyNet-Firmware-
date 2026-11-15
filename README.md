@@ -30,6 +30,7 @@ The repository currently contains:
 - A read-only router diagnostics script at `scripts/collect-router-info.sh` and step-by-step instructions in [next router check](docs/next-router-check.md)
 - A firmware feasibility review at `docs/firmware-feasibility.md`
 - A source-level audit of the exact-model community build profile and its floating upstream source at `docs/community-build-audit-2026-11-15.md`
+- An inventory of exact-device OpenWrt source evidence (including missing DTS/image recipe) at `docs/exact-device-source-inventory-2026-11-15.md`
 - A preliminary image-size/checksum audit at `scripts/audit-image-size.sh` (not a compatibility test)
 
 The workflow is **not a firmware build**. It intentionally fails closed if the exact device definition is absent. No factory, sysupgrade, or recovery image is generated or published.
