@@ -13,11 +13,11 @@ echo "Checking upstream OpenWrt ramips/mt76x8 device definitions..."
 curl --fail --location --silent --show-error "$SOURCE_URL" -o "$TMP_FILE"
 
 if awk -v hwid="$HWID" -v model="$MODEL" '
-  BEGIN { IGNORECASE=1; found=0; block="" }
+  BEGIN { found=0; block="" }
   /^define Device\// { block=$0 ORS; next }
   { block=block $0 ORS }
   /^endef$/ {
-    if (index(block, hwid) && index(block, model)) found=1
+    if (index(tolower(block), tolower(hwid)) && index(tolower(block), tolower(model))) found=1
     block=""
   }
   END { exit(found ? 0 : 1) }
