@@ -27,7 +27,7 @@ The repository currently contains:
 - Hardware notes and safety requirements
 - A GitHub Actions compatibility-gate workflow
 - A script that checks whether one upstream device-definition block contains both the model and hardware ID
-- A read-only router diagnostics script at `scripts/collect-router-info.sh`
+- A read-only router diagnostics script at `scripts/collect-router-info.sh` and step-by-step instructions in [next router check](docs/next-router-check.md)
 - A firmware feasibility review at `docs/firmware-feasibility.md`
 - A preliminary image-size/checksum audit at `scripts/audit-image-size.sh` (not a compatibility test)
 
