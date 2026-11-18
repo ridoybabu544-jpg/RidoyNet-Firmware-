@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>Ridoy.Net Wi-Fi</title>
+<style>
+:root{color-scheme:dark;--bg:#071426;--panel:#10243c;--line:#23415f;--cyan:#37d6e8;--text:#f4f8ff;--muted:#a8bdd2}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 0,#12375a 0,var(--bg) 62%);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
+main{width:min(100%,420px);padding:34px 26px 26px;background:linear-gradient(160deg,#142d49,#0c1d32);border:1px solid var(--line);border-radius:24px;box-shadow:0 22px 70px #0008;text-align:center}
+.mark{width:76px;height:76px;margin:0 auto 18px;border-radius:22px;display:grid;place-items:center;background:#173d57;border:1px solid #2d7085;color:var(--cyan);font-size:30px;font-weight:800;letter-spacing:-2px}
+h1{font-size:29px;margin:0;letter-spacing:-.8px}h1 span{color:var(--cyan)}.sub{color:var(--muted);line-height:1.6;margin:10px 0 25px}
+.status{display:flex;align-items:center;justify-content:center;gap:9px;color:#bdeef2;font-size:13px;margin:0 0 24px}.dot{width:8px;height:8px;border-radius:50%;background:#3be0a0;box-shadow:0 0 12px #3be0a0}
+button{width:100%;border:0;border-radius:14px;padding:16px 18px;background:linear-gradient(90deg,#28c7d9,#46e0c0);color:#06202c;font-size:16px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.7;cursor:wait}.note{font-size:12px;color:#829bb4;line-height:1.6;margin:20px 0 0}.foot{margin-top:25px;padding-top:18px;border-top:1px solid #23415f;color:#7892ab;font-size:11px;letter-spacing:1.4px}
+#msg{min-height:20px;margin-top:13px;color:#bdeef2;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <div class="mark" aria-hidden="true">R</div>
+  <h1>Welcome to <span>Ridoy.Net</span></h1>
+  <p class="sub">You are connected to our Wi-Fi network. Continue to start browsing.</p>
+  <div class="status"><span class="dot"></span> Wi-Fi connection detected</div>
+  <button id="go" type="button">Continue to Internet</button>
+  <div id="msg" role="status" aria-live="polite"></div>
+  <p class="note">By continuing, you agree to use this network responsibly and follow applicable laws.</p>
+  <div class="foot">RID0Y.NET · WIRELESS NETWORK</div>
+</main>
+<script>
+document.getElementById('go').addEventListener('click',function(){
+  const m=document.getElementById('msg');
+  m.textContent='Connection request received. Please wait…';
+  // The router's captive-portal backend must authorize this client.
+  // A static page alone cannot grant internet access.
+  if (window.RIDOY_PORTAL && typeof window.RIDOY_PORTAL.authorize === 'function') {
+    this.disabled=true;
+    Promise.resolve(window.RIDOY_PORTAL.authorize()).then(()=>{m.textContent='You are online.';}).catch(()=>{this.disabled=false;m.textContent='Could not connect. Please try again.';});
+  } else {
+    m.textContent='Portal backend is not connected yet.';
+  }
+});
+</script>
+</body>
+</html>
